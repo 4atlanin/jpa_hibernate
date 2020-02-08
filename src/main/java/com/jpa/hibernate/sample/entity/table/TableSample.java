@@ -15,7 +15,7 @@ import javax.persistence.*;
                     @UniqueConstraint(name = "uk_field", columnNames = {"field"})})
 @NoArgsConstructor
 public class TableSample {
-    @Id
+    @Id @GeneratedValue
     @Column(name = "ts_id")
     private Long id;
 

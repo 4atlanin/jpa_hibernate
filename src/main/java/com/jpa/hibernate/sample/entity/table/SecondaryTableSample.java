@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Data
+/*@Data
 @Entity
 @Table(name = "secondary_table_sample")
 @NoArgsConstructor
@@ -24,4 +24,4 @@ public class SecondaryTableSample {
     @Column(table = "country")
     private String country;
 
-}
+}*/
