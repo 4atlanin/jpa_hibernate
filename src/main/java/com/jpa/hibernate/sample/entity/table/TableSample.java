@@ -14,7 +14,11 @@ import javax.persistence.*;
                     @UniqueConstraint(name = "uk_id_field", columnNames = {"ts_id", "field"}),
                     @UniqueConstraint(name = "uk_field", columnNames = {"field"})})
 @NoArgsConstructor
+@NamedQueries( {
+                   @NamedQuery( name = "findAllTableSamplesNamedQuery", query = "SELECT ts FROM TableSample ts" )
+               } )
 public class TableSample {
+    // GenerationType.AUTO - если база поддерживает, то выбирается SEQUENCE, иначе TABLE стратегия
     @Id @GeneratedValue
     @Column(name = "ts_id")
     private Long id;

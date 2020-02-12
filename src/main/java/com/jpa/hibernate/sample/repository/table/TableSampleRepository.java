@@ -25,7 +25,15 @@ public class TableSampleRepository
     @Transactional
     public List<TableSample> getAllTableSample( )
     {
-        List<TableSample> tableSamples = (List<TableSample>) entityManager.createNativeQuery( "select * from table_sample" ).getResultList();
+        List<TableSample> tableSamples = entityManager.createNativeQuery( "select * from table_sample", TableSample.class ).getResultList();
+        entityManager.createNamedQuery( "findAllTableSamplesNamedQuery", TableSample.class ).getFirstResult();
+        return tableSamples;
+    }
+
+    @Transactional
+    public List<TableSample> getTableSamplesNamedQuery()
+    {
+        List<TableSample> tableSamples = entityManager.createNamedQuery( "findAllTableSamplesNamedQuery", TableSample.class ).getResultList();
         return tableSamples;
     }
 }

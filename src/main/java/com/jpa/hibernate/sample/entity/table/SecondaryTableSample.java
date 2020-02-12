@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-/*@Data
+@Data
 @Entity
 @Table(name = "secondary_table_sample")
 @NoArgsConstructor
@@ -15,7 +15,11 @@ import javax.persistence.*;
         @SecondaryTable(name = "country")})
 public class SecondaryTableSample {
     @Id
-    private int id;
+    @GeneratedValue
+    @Column( name = "sts_id" )
+    private Long id;
+
+    @Column( name = "sts_street" )
     private String street;
 
     @Column(table = "city")
@@ -24,4 +28,4 @@ public class SecondaryTableSample {
     @Column(table = "country")
     private String country;
 
-}*/
+}

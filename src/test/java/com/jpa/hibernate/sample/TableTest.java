@@ -1,16 +1,24 @@
 package com.jpa.hibernate.sample;
 
+import com.jpa.hibernate.sample.entity.table.SecondaryTableSample;
 import com.jpa.hibernate.sample.entity.table.TableSample;
+import com.jpa.hibernate.sample.repository.table.SecondaryTableSampleRepository;
 import com.jpa.hibernate.sample.repository.table.TableSampleRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.jdbc.Sql;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+@Sql( executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:sql/cleanup.sql" )
 public class TableTest extends JpaHibernateBaseTest
 {
     @Autowired
     private TableSampleRepository tableSampleRepository;
+
+    @Autowired
+    private SecondaryTableSampleRepository secondaryTableSampleRepository;
 
     @Test
     public void entityManagerSample() {
@@ -19,5 +27,17 @@ public class TableTest extends JpaHibernateBaseTest
         tableSampleRepository.saveTableSample( ts );
 
         assertEquals( 1, tableSampleRepository.getAllTableSample(  ).size() );
+        assertEquals( 1, tableSampleRepository.getTableSamplesNamedQuery().size() );
+    }
+
+    @Test
+    public void secondaryTableTest()
+    {
+        SecondaryTableSample sts = new SecondaryTableSample();
+        sts.setCity( "Brest" );
+        sts.setCountry( "France" );
+        sts.setStreet( "Cagoule" );
+        SecondaryTableSample stsSaved = secondaryTableSampleRepository.save( sts );
+        assertNotNull( stsSaved );
     }
 }

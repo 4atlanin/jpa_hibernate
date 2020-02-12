@@ -15,6 +15,6 @@ public class SimpleIdSample {
     //или обёртка над соответствующим примитивом,
     //или массив соответствующих примитивов
     //или строка, дата, BigInteger
-    @Id @GeneratedValue
+    @Id
     private int id;
 }

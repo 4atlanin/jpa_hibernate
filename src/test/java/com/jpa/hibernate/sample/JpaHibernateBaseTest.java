@@ -1,11 +1,7 @@
 package com.jpa.hibernate.sample;
 
-import com.jpa.hibernate.sample.entity.table.TableSample;
-import com.jpa.hibernate.sample.repository.table.TableSampleRepository;
-import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.util.TestPropertyValues;
 import org.springframework.context.ApplicationContextInitializer;
@@ -28,7 +24,7 @@ public class JpaHibernateBaseTest
         .withUsername( "root" )
         .withPassword( "" )
         .withDatabaseName("jpa_hibernate")
-        .withInitScript( "sql/init.sql" )
+   // .withInitScript( "sql/init.sql" )  //TODO  раскоментировать это, чтобы использовать рукописную схему в тестах, затем 1.2
         .withLogConsumer(new Slf4jLogConsumer(logger));
 
     static class Initializer
