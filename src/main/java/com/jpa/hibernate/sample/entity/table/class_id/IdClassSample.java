@@ -1,12 +1,11 @@
-package com.jpa.hibernate.sample.entity.table;
+package com.jpa.hibernate.sample.entity.table.class_id;
 
+import com.jpa.hibernate.sample.entity.table.class_id.ClassId;
 import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
-import javax.persistence.Table;
-import java.io.Serializable;
 
 @Data
 @Entity
@@ -15,10 +14,4 @@ public class IdClassSample {
     //Todo Can we use generator here?
     @Id int partOne;
     @Id int partTwo;
-}
-//todo ad sample about search in jpql
-@Data
-class ClassId implements Serializable {
-    private int partOne;
-    private int partTwo;
 }

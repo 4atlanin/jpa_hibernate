@@ -1,5 +1,6 @@
 package com.jpa.hibernate.sample.repository.table;
 
+import com.jpa.hibernate.sample.entity.table.class_id.IdClassSample;
 import com.jpa.hibernate.sample.entity.table.TableSample;
 import lombok.Data;
 import org.springframework.stereotype.Repository;

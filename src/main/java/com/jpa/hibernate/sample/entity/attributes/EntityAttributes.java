@@ -1,10 +1,12 @@
 package com.jpa.hibernate.sample.entity.attributes;
 
 
+import lombok.Data;
+
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.Date;
 
+@Data
 @Entity
 @Table(name = "entity_attributes")
 @Access(AccessType.FIELD)
@@ -50,6 +52,8 @@ public class EntityAttributes {
     public String getAccessTest () {
         return accessTest;
     }
+
+    public
 }
 
 enum Enumeration {
