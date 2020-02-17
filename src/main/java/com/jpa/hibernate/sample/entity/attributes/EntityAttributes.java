@@ -53,7 +53,10 @@ public class EntityAttributes {
         return accessTest;
     }
 
-    public
+    public void setAccessTest( String accessTest )
+    {
+        this.accessTest = accessTest;
+    }
 }
 
 enum Enumeration {

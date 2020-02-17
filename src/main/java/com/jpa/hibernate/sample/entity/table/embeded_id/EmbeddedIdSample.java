@@ -1,6 +1,5 @@
 package com.jpa.hibernate.sample.entity.table.embeded_id;
 
-import com.jpa.hibernate.sample.entity.table.embeded_id.MyEmbeddedId;
 import lombok.Data;
 
 import javax.persistence.EmbeddedId;

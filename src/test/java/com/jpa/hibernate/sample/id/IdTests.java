@@ -1,6 +1,7 @@
 package com.jpa.hibernate.sample.id;
 
 import com.jpa.hibernate.sample.JpaHibernateBaseTest;
+import com.jpa.hibernate.sample.entity.table.class_id.IdClassSample;
 import com.jpa.hibernate.sample.entity.table.embeded_id.EmbeddedIdSample;
 import com.jpa.hibernate.sample.entity.table.embeded_id.MyEmbeddedId;
 import com.jpa.hibernate.sample.repository.table.EmbeddedIdRepository;
@@ -8,8 +9,9 @@ import com.jpa.hibernate.sample.repository.table.IdClassSampleRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.Arrays;
 import java.util.Random;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class IdTests extends JpaHibernateBaseTest {
     @Autowired
@@ -26,8 +28,12 @@ public class IdTests extends JpaHibernateBaseTest {
         EmbeddedIdSample eis2 = getEmbeddedIdSample();
         embeddedIdRepository.save(eis);
         embeddedIdRepository.save(eis2);
-
-        embeddedIdRepository.findAll().forEach(System.out::println);
+        embeddedIdRepository.findAll().forEach( entity -> {
+            boolean first = entity.getId().equals( eis.getId() );
+            boolean second = entity.getId().equals( eis2.getId() );
+            assertTrue( first || second ); // проверка, что есть совпадения
+            assertFalse( first && second ); //проверка что есть только 1 совпадение
+        } );
     }
 
     private EmbeddedIdSample getEmbeddedIdSample() {
@@ -38,5 +44,25 @@ public class IdTests extends JpaHibernateBaseTest {
         eis.setId(mei);
 
         return eis;
+    }
+
+    @Test
+    public void testClassIdSample()
+    {
+        IdClassSample ics = getIdClassSample();
+        IdClassSample ics2 = getIdClassSample();
+        idClassSampleRepository.save( ics );
+        idClassSampleRepository.save( ics2 );
+        assertNotNull( idClassSampleRepository.findById( ics.getId() ).orElseGet( null ) );
+        assertNotNull( idClassSampleRepository.findById( ics2.getId() ).orElseGet( null ) );
+
+    }
+
+    private IdClassSample getIdClassSample()
+    {
+        IdClassSample idcs = new IdClassSample();
+        idcs.setPartOne( random.nextInt() );
+        idcs.setPartTwo( random.nextInt() );
+        return idcs;
     }
 }

@@ -21,7 +21,8 @@ public class TableTest extends JpaHibernateBaseTest
     private SecondaryTableSampleRepository secondaryTableSampleRepository;
 
     @Test
-    public void entityManagerSample() {
+    void entityManagerSample()
+    {
         TableSample ts = new TableSample();
         ts.setField( "field" );
         tableSampleRepository.saveTableSample( ts );
@@ -31,7 +32,7 @@ public class TableTest extends JpaHibernateBaseTest
     }
 
     @Test
-    public void secondaryTableTest()
+    void secondaryTableTest()
     {
         SecondaryTableSample sts = new SecondaryTableSample();
         sts.setCity( "Brest" );
