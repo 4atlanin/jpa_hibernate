@@ -6,12 +6,12 @@ spring:
       show_sql: true
       format_sql: true
       type: trace
+    open-in-view: false
   datasource:
     url: 'jdbc:mysql://localhost:3306/jpa_hibernate'
     username: 'bibis'
     password: 'bibis'
     name: 'jpa_hibernate'
     initialization-mode: always
-
 server:
   port: 8080

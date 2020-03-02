@@ -8,17 +8,25 @@ import com.jpa.hibernate.sample.repository.table.EmbeddedIdRepository;
 import com.jpa.hibernate.sample.repository.table.IdClassSampleRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.jdbc.Sql;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import java.util.List;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@Sql( executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:sql/cleanup.sql" )
 public class IdTests extends JpaHibernateBaseTest {
     @Autowired
     private EmbeddedIdRepository embeddedIdRepository;
 
     @Autowired
     private IdClassSampleRepository idClassSampleRepository;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     private Random random = new Random();
 
@@ -64,5 +72,25 @@ public class IdTests extends JpaHibernateBaseTest {
         idcs.setPartOne( random.nextInt() );
         idcs.setPartTwo( random.nextInt() );
         return idcs;
+    }
+
+    //показывает как юзаются в квери разные типы ID
+    @Test
+    public void showDifferenceJPQLEmbeddedIdClass()
+    {
+        IdClassSample ics = getIdClassSample();
+        IdClassSample ics2 = getIdClassSample();
+        idClassSampleRepository.save( ics );
+        idClassSampleRepository.save( ics2 );
+
+        EmbeddedIdSample eis = getEmbeddedIdSample();
+        EmbeddedIdSample eis2 = getEmbeddedIdSample();
+        embeddedIdRepository.save( eis );
+        embeddedIdRepository.save( eis2 );
+
+        List idClassList = entityManager.createQuery( "SELECT ics.partOne FROM IdClassSample ics" ).getResultList();
+        List embeddedIdList = entityManager.createQuery( "SELECT eis.id.partOne FROM EmbeddedIdSample eis" ).getResultList();
+        assertEquals( 2, embeddedIdList.size() );
+        assertEquals( 2, idClassList.size() );
     }
 }

@@ -1,5 +1,6 @@
-package com.jpa.hibernate.sample;
+package com.jpa.hibernate.sample.table;
 
+import com.jpa.hibernate.sample.JpaHibernateBaseTest;
 import com.jpa.hibernate.sample.entity.table.SecondaryTableSample;
 import com.jpa.hibernate.sample.entity.table.TableSample;
 import com.jpa.hibernate.sample.repository.table.SecondaryTableSampleRepository;
@@ -11,7 +12,7 @@ import org.springframework.test.context.jdbc.Sql;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-@Sql( executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:sql/cleanup.sql" )
+@Sql( executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:sql/cleanup.sql" )
 public class TableTest extends JpaHibernateBaseTest
 {
     @Autowired
