@@ -1,3 +1,5 @@
+# __Repo for studing jpa/hibernate features:__ [![Build Status](https://travis-ci.com/4atlanin/jpa_hibernate.svg?branch=master)](https://travis-ci.com/4atlanin/jpa_hibernate)
+
 #### Инициализация БД
  - Если инициализируем базу данных с помощью хибернейта, и хотим выполнить на старте какие-то скрипты после инициализации, то нужно закинуть в ресурсы
   файл `data.sql`, пропертю выставить `spring.datasource.initialization-mode=always`(`spring.jpa.hibernate.ddl-auto` должен быть не `none`)
