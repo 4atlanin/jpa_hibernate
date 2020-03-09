@@ -7,10 +7,13 @@ import org.hibernate.LazyInitializationException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @Sql( executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:sql/cleanup.sql" )
 public class ElementCollectionTest extends JpaHibernateBaseTest
@@ -20,33 +23,65 @@ public class ElementCollectionTest extends JpaHibernateBaseTest
     private Random random = new Random();
 
     /*
-    * Создаст доп таблицу в которой каждоя строка будет хранить id владеющей сущности и 1 значение из коллекции.
-    */
+     * Создаст доп таблицу в которой каждоя строка будет хранить id владеющей сущности и 1 значение из коллекции.
+     */
     @Test
-    public void simpleCollectionTest() throws InterruptedException
+    public void simpleListCollectionTest()
     {
         ElementCollectionEntity entity = new ElementCollectionEntity();
         entity.setId( random.nextInt() );
-        entity.setInfo( Arrays.asList( "ONE", "TWO" ) );
+        entity.setList( Arrays.asList( "ONE", "TWO" ) );
         repository.save( entity );
 
     }
 
     @Test
-    public void testLazyLoadOfCollectionTest() throws InterruptedException
+    public void testLazyLoadOfListCollectionTest()
     {
         int id = random.nextInt();
 
         ElementCollectionEntity entity = new ElementCollectionEntity();
         entity.setId( id );
-        entity.setInfo( Arrays.asList( "ONE", "TWO" ) );
+        entity.setList( Arrays.asList( "ONE", "TWO" ) );
         repository.save( entity );
-
 
         ElementCollectionEntity retrievedEntity = repository.getOne( id );
 
         //Вылетит LazyInitializationException т.к.
-        assertThrows( LazyInitializationException.class, retrievedEntity::getInfo );
-
+        assertThrows( LazyInitializationException.class, retrievedEntity::getList );
     }
+
+    @Test
+    public void testSimpleMapCollectionTest()
+    {
+        Map<String, String> map = new HashMap<>();
+        map.put( "ONE", "VALUE_ONE" );
+        map.put( "TWO", "VALUE_TWO" );
+        ElementCollectionEntity entity = new ElementCollectionEntity();
+
+        entity.setId( random.nextInt() );
+        entity.setMap( map );
+        repository.save( entity );
+    }
+
+    @Test
+    public void testLazyLoadOfMapCollectionTest()
+    {
+        int id = random.nextInt();
+
+        Map<String, String> map = new HashMap<>();
+        map.put( "ONE", "VALUE_ONE" );
+        map.put( "TWO", "VALUE_TWO" );
+        ElementCollectionEntity entity = new ElementCollectionEntity();
+
+        entity.setId( id );
+        entity.setMap( map );
+        repository.save( entity );
+
+        ElementCollectionEntity retrievedEntity = repository.getOne( id );
+
+        //Вылетит LazyInitializationException т.к.
+        assertThrows( LazyInitializationException.class, retrievedEntity::getMap );
+    }
+
 }
