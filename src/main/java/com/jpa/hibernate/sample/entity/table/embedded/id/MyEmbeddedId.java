@@ -1,4 +1,4 @@
-package com.jpa.hibernate.sample.entity.table.embeded_id;
+package com.jpa.hibernate.sample.entity.table.embedded.id;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -22,6 +22,7 @@ public class SecondaryTableSample {
     @Column( name = "sts_street" )
     private String street;
 
+    // table указывает к какой таблице относится аттрибут
     @Column(table = "city")
     private String city;
 

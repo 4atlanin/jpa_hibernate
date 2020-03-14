@@ -2,8 +2,8 @@ package com.jpa.hibernate.sample.id;
 
 import com.jpa.hibernate.sample.JpaHibernateBaseTest;
 import com.jpa.hibernate.sample.entity.table.class_id.IdClassSample;
-import com.jpa.hibernate.sample.entity.table.embeded_id.EmbeddedIdSample;
-import com.jpa.hibernate.sample.entity.table.embeded_id.MyEmbeddedId;
+import com.jpa.hibernate.sample.entity.table.embedded.id.EmbeddedIdSample;
+import com.jpa.hibernate.sample.entity.table.embedded.id.MyEmbeddedId;
 import com.jpa.hibernate.sample.repository.table.EmbeddedIdRepository;
 import com.jpa.hibernate.sample.repository.table.IdClassSampleRepository;
 import org.junit.jupiter.api.Test;

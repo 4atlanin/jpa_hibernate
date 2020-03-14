@@ -1,3 +1,4 @@
+-- out of date
 create table hibernate_sequence
 (
     next_val      bigint not null

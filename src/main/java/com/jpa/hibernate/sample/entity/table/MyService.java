@@ -13,7 +13,7 @@ public class MyService
     private TableSampleRepository repository;
 
 
-    @Scheduled( fixedDelay = 10000 )
+   // @Scheduled( fixedDelay = 10000 )
     public void scheduleFixedDelayTask()
     {
         TableSample ts = new TableSample();
