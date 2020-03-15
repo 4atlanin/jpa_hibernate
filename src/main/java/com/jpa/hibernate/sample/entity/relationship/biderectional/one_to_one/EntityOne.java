@@ -1,4 +1,4 @@
-package com.jpa.hibernate.sample.entity.relationship.one_to_one.bidirectional;
+package com.jpa.hibernate.sample.entity.relationship.biderectional.one_to_one;
 
 import lombok.Data;
 import lombok.ToString;
