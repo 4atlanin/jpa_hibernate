@@ -7,8 +7,8 @@ import com.jpa.hibernate.sample.entity.relationship.unidirectional.one_to_one.En
 import com.jpa.hibernate.sample.entity.relationship.unidirectional.one_to_one.EntityOTOUDTwo;
 import com.jpa.hibernate.sample.repository.relationship.bidirectional.one_to_one.EntityOTOBDOneRepository;
 import com.jpa.hibernate.sample.repository.relationship.bidirectional.one_to_one.EntityOTOBDTwoRepository;
-import com.jpa.hibernate.sample.repository.relationship.unidirectional.EntityOTOUDOneRepository;
-import com.jpa.hibernate.sample.repository.relationship.unidirectional.EntityOTOUDTwoRepository;
+import com.jpa.hibernate.sample.repository.relationship.unidirectional.one_to_one.EntityOTOUDOneRepository;
+import com.jpa.hibernate.sample.repository.relationship.unidirectional.one_to_one.EntityOTOUDTwoRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
