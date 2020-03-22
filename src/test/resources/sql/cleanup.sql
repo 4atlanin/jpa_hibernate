@@ -13,12 +13,12 @@ DELETE FROM collection_map_slave;
 DELETE FROM collection_owner;
 DELETE FROM entity_two;
 DELETE FROM entity_one;
-DELETE
-FROM otm_ud_one;
-DELETE
-FROM otm_ud_many;
-DELETE
-FROM otm_ud_one_many;
-DELETE
-FROM one_to_many_join_table;
+DELETE FROM otm_ud_one;
+DELETE FROM otm_ud_many;
+DELETE FROM otm_ud_one_many;
+DELETE FROM one_to_many_join_table;
+DELETE FROM mtm_join_table;
+DELETE FROM mtm_bd_left;
+DELETE FROM mtm_bd_right;
+
 SET FOREIGN_KEY_CHECKS = 1;
