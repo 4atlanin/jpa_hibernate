@@ -20,5 +20,6 @@ DELETE FROM one_to_many_join_table;
 DELETE FROM mtm_join_table;
 DELETE FROM mtm_bd_left;
 DELETE FROM mtm_bd_right;
-
+DELETE FROM location_order_by;
+DELETE FROM company_order_by;
 SET FOREIGN_KEY_CHECKS = 1;

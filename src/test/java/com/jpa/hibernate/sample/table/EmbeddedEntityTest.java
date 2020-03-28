@@ -1,10 +1,10 @@
 package com.jpa.hibernate.sample.table;
 
 import com.jpa.hibernate.sample.JpaHibernateBaseTest;
-import com.jpa.hibernate.sample.entity.table.embedded.entity.EmbeddableRepository;
-import com.jpa.hibernate.sample.entity.table.embedded.entity.EmbeddedEntity;
-import com.jpa.hibernate.sample.entity.table.embedded.entity.EmbeddedEntityGoDeeper;
-import com.jpa.hibernate.sample.entity.table.embedded.entity.EmbeddedEntityOwner;
+import com.jpa.hibernate.sample.table.embedded.entity.EmbeddableRepository;
+import com.jpa.hibernate.sample.table.embedded.entity.EmbeddedEntity;
+import com.jpa.hibernate.sample.table.embedded.entity.EmbeddedEntityGoDeeper;
+import com.jpa.hibernate.sample.table.embedded.entity.EmbeddedEntityOwner;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;

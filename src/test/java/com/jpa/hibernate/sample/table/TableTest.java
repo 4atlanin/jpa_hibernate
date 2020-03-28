@@ -1,8 +1,6 @@
 package com.jpa.hibernate.sample.table;
 
 import com.jpa.hibernate.sample.JpaHibernateBaseTest;
-import com.jpa.hibernate.sample.entity.table.SecondaryTableSample;
-import com.jpa.hibernate.sample.entity.table.TableSample;
 import com.jpa.hibernate.sample.repository.table.SecondaryTableSampleRepository;
 import com.jpa.hibernate.sample.repository.table.TableSampleRepository;
 import org.junit.jupiter.api.Test;

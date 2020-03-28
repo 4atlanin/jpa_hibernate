@@ -1,8 +1,8 @@
 package com.jpa.hibernate.sample.relationship.bidirectional.many_to_many;
 
 import com.jpa.hibernate.sample.JpaHibernateBaseTest;
-import com.jpa.hibernate.sample.entity.relationship.biderectional.many_to_many.ManyLeftSide;
-import com.jpa.hibernate.sample.entity.relationship.biderectional.many_to_many.ManyRightSide;
+import com.jpa.hibernate.sample.relationship.biderectional.many_to_many.ManyLeftSide;
+import com.jpa.hibernate.sample.relationship.biderectional.many_to_many.ManyRightSide;
 import com.jpa.hibernate.sample.repository.relationship.bidirectional.many_to_many.MTMBDLeftRepository;
 import com.jpa.hibernate.sample.repository.relationship.bidirectional.many_to_many.MTMBDRightRepository;
 import org.assertj.core.internal.bytebuddy.utility.RandomString;

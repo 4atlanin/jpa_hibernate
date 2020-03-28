@@ -1,7 +1,7 @@
 package com.jpa.hibernate.sample;
 
-import com.jpa.hibernate.sample.entity.attributes.EntityAttributes;
-import com.jpa.hibernate.sample.entity.attributes.Enumeration;
+import com.jpa.hibernate.sample.attributes.EntityAttributes;
+import com.jpa.hibernate.sample.attributes.Enumeration;
 import com.jpa.hibernate.sample.repository.attributes.EntityAttributesRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

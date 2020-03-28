@@ -1,8 +1,8 @@
 package com.jpa.hibernate.sample.table;
 
 import com.jpa.hibernate.sample.JpaHibernateBaseTest;
-import com.jpa.hibernate.sample.entity.table.collections.ElementCollectionEntity;
-import com.jpa.hibernate.sample.entity.table.collections.ElementCollectionRepository;
+import com.jpa.hibernate.sample.table.collections.ElementCollectionEntity;
+import com.jpa.hibernate.sample.table.collections.ElementCollectionRepository;
 import org.hibernate.LazyInitializationException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

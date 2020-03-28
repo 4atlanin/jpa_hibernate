@@ -1,8 +1,6 @@
 package com.jpa.hibernate.sample.relationship.unidirectional.one_to_many;
 
 import com.jpa.hibernate.sample.JpaHibernateBaseTest;
-import com.jpa.hibernate.sample.entity.relationship.unidirectional.one_to_many.OTMUDManySide;
-import com.jpa.hibernate.sample.entity.relationship.unidirectional.one_to_many.OTMUDOneSide;
 import com.jpa.hibernate.sample.repository.relationship.unidirectional.one_to_many.OTMUDManySideRepository;
 import com.jpa.hibernate.sample.repository.relationship.unidirectional.one_to_many.OTMUDOneSideRepository;
 import org.assertj.core.internal.bytebuddy.utility.RandomString;

@@ -1,8 +1,6 @@
 package com.jpa.hibernate.sample.relationship.unidirectional.one_to_one;
 
 import com.jpa.hibernate.sample.JpaHibernateBaseTest;
-import com.jpa.hibernate.sample.entity.relationship.unidirectional.one_to_one.EntityOTOUDOne;
-import com.jpa.hibernate.sample.entity.relationship.unidirectional.one_to_one.EntityOTOUDTwo;
 import com.jpa.hibernate.sample.repository.relationship.unidirectional.one_to_one.EntityOTOUDOneRepository;
 import com.jpa.hibernate.sample.repository.relationship.unidirectional.one_to_one.EntityOTOUDTwoRepository;
 import org.hibernate.LazyInitializationException;
