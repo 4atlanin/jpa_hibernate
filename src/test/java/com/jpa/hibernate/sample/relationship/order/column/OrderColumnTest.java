@@ -9,6 +9,8 @@ import org.testcontainers.shaded.org.apache.commons.lang.RandomStringUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 @Sql( executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:sql/cleanup.sql" )
 public class OrderColumnTest extends JpaHibernateBaseTest
 {
@@ -21,9 +23,11 @@ public class OrderColumnTest extends JpaHibernateBaseTest
         Room room = new Room( RandomStringUtils.randomAlphanumeric( 10 ) );
         room.setTables( getRandomTables( 10 ) );
         room = roomRepository.save( room );
-        room = roomRepository.findById( room.getId() ).get();  //
-        //     assertTrue( checkOrder( room.getTables() ) );
-        // assertFalse( checkOrder( room.getTables() ) );
+
+        Room room2 = new Room( RandomStringUtils.randomAlphanumeric( 10 ) );
+        room2.setTables( getRandomTables( 10 ) );
+        room2 = roomRepository.save( room2 );
+        assertNotNull( room2 );
     }
 
     private List<Table> getRandomTables( int amount )

@@ -22,7 +22,9 @@ public class Room
 
     @OneToMany( cascade = CascadeType.PERSIST, fetch = FetchType.EAGER )
     @JoinColumn( name = "rwoc_id", nullable = false )  //без неё будет 3-я таблица, таблица связи
-    @OrderColumn( name = "room_order_column" )    //запилит интовую колонку с таким названием. Порядок будет определятся цифрами в ячейках, которые зависят от порядка вставки.
+    @OrderColumn( name = "room_order_column" )    //запилит интовую колонку с таким названием.
+    // Порядок будет определятся цифрами в ячейках, которые зависят от порядка в листе.
+    // Каждая рума будет иметь свою последовательность, начиная с 0
     private List<Table> tables;
 
     public Room( String name )
