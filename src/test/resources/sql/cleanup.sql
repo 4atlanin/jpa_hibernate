@@ -29,4 +29,5 @@ DELETE FROM joined_newspaper;
 DELETE FROM tpc_book;
 DELETE FROM tpc_item;
 DELETE FROM tpc_newspaper;
+DELETE FROM extender_mapped_super_class;
 SET FOREIGN_KEY_CHECKS = 1;

@@ -10,8 +10,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Table( name = "tpc_item" )
 @Inheritance( strategy = InheritanceType.TABLE_PER_CLASS )
-@DiscriminatorColumn( name = "discriminator_column", discriminatorType = DiscriminatorType.CHAR )
-@DiscriminatorValue( "I" )   // В базовом классе указываем, если будем его хранить, а не просто от него наследовать
 public class TPCItem
 {
     @Id
