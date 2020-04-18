@@ -30,4 +30,6 @@ DELETE FROM tpc_book;
 DELETE FROM tpc_item;
 DELETE FROM tpc_newspaper;
 DELETE FROM extender_mapped_super_class;
+DELETE FROM orphan_two;
+DELETE FROM orphan_one;
 SET FOREIGN_KEY_CHECKS = 1;
