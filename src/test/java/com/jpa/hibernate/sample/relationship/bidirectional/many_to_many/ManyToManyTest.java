@@ -42,14 +42,14 @@ public class ManyToManyTest extends JpaHibernateBaseTest
         mr1.setLeftSide( Arrays.asList( ml1, ml2 ) );
         mr2.setLeftSide( Arrays.asList( ml1, ml2 ) );
 
+        ml1 = leftRepository.save( ml1 );
+        ml2 = leftRepository.save( ml2 );
+
         ml1.setRightSide( Arrays.asList( mr1, mr2 ) );
         ml2.setRightSide( Arrays.asList( mr1, mr2 ) );
 
         mr1 = rightRepository.save( mr1 );
         mr2 = rightRepository.save( mr2 );
-
-        ml1 = leftRepository.save( ml1 );
-        ml2 = leftRepository.save( ml2 );
 
         ManyRightSide lieCheckRight = rightRepository.findById( mr1.getId() ).get();
 

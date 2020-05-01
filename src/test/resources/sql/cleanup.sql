@@ -32,4 +32,8 @@ DELETE FROM tpc_newspaper;
 DELETE FROM extender_mapped_super_class;
 DELETE FROM orphan_two;
 DELETE FROM orphan_one;
+DElETE FROM oto_ud_two;
+DElETE FROM oto_ud_one;
+DElETE FROM room_with_order_column;
+DElETE FROM table_with_order_column;
 SET FOREIGN_KEY_CHECKS = 1;

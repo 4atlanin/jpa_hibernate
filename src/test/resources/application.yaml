@@ -1,7 +1,8 @@
 spring:
   jpa:
     hibernate:
-      ddl-auto: create-drop  #todo 1.2 none, чтобы исользовать рукописную схему в тестах, затем 1.3
+      # create-drop может вызывать дедлоки.
+      ddl-auto: update  #todo 1.2 none, чтобы исользовать рукописную схему в тестах, затем 1.3
     show_sql: true
     properties:
       format_sql: true
@@ -11,6 +12,8 @@ spring:
     username: 'bibis'
     password: 'bibis'
     name: 'source_name'
-    initialization-mode: always  # todo 1.3 never чтобы использовать рукописную вхему в тестах. Конец
+    initialization-mode: always  # todo 1.3 never чтобы использовать рукописную cхему в тестах. Конец
+    hikari:
+      maximum-pool-size: 18 # почему-то пришлось увеличивать размер пула
 server:
   port: 8080

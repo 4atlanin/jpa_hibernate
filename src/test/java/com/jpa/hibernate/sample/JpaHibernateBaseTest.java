@@ -20,7 +20,7 @@ public class JpaHibernateBaseTest
     private static final String DB_PASSWORD = "spring.datasource.password";
     private static final Logger logger = LoggerFactory.getLogger(JpaHibernateApplication.class);
 
-    static MySQLContainer mySQLContainer = (MySQLContainer) new MySQLContainer( "mysql:5.7.12" )
+    static MySQLContainer mySQLContainer = (MySQLContainer) new MySQLContainer( "mysql:5.7.29" )
         .withUsername( "root" )
         .withPassword( "" )
         .withDatabaseName("jpa_hibernate")

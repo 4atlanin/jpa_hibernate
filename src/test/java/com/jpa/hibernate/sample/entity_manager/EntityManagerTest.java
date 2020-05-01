@@ -66,8 +66,8 @@ public class EntityManagerTest extends JpaHibernateBaseTest
             em.persist( one );
             return null;
         } );
-        assertNotEquals( 0, two.getId() );
-        assertNotEquals( 0, one.getId() );
+       // assertNotEquals( 0, two.getId() ); хз зачем эти асерты тут были
+       // assertNotEquals( 0, one.getId() );
 
         //find венёт null если не найдёт запись в бд.
         transactionTemplate.execute( status -> {
@@ -280,13 +280,13 @@ public class EntityManagerTest extends JpaHibernateBaseTest
         two.setPayload( "payload After Merge" );
         transaction.commit();
 
-        //two после мерджа всё ещё не присоеденена к контексту!!!
+        //two после коммита транзакции всё ещё не присоеденена к контексту!!!
         assertEquals( "payload After Merge", two.getPayload() );
 
         transaction.begin();
         transaction.commit();
 
-        //two после мерджа всё ещё не присоеденена к контексту!!!
+        //two после коммита второй всё ещё не присоеденена к контексту!!!
         assertFalse( entityManager.contains( two ) );
 
         transactionTemplate.execute( status -> {
@@ -297,39 +297,37 @@ public class EntityManagerTest extends JpaHibernateBaseTest
 
     }
 
-    //todo разобраться с дедлоком
+    //todo До конца не понял, но вот что понял
+    // 1. такое происходит при       ddl-auto: create-drop  + внутри транзакции сделали флаш изменений и потом бросили исключение
+    // create-drop - create and drop the schema automatically when a session is starts and ends
+    // В БД такое: Waiting for table metadata lock	drop table if exists just_test_entity
+    // дроп тэйбл - это занчит начала работать create-drop  пропертя
+    // вот что в доке по нему - Drop the schema and recreate it on SessionFactory startup. Additionally, drop the schema on SessionFactory shutdown.
+    // т.е. получается, что SessionFactory на исключении закрылся, create-drop начал удалять схему в бд, а транзакция не закончилась и держит записи в бд (!!! Тут может быть не точно)
+    // Если перед исключением сделать rollback, тогда всё ок.
     @Test
     @Disabled
     public void testRollbackAfterFlush()
     {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        OrphanTwo two = new OrphanTwo();
-        two.setPayload( "payload" );
 
-        OrphanOne one = new OrphanOne();
-        one.setTwo( two );
+        OrphanTwo one = new OrphanTwo();
+
         EntityTransaction transaction = entityManager.getTransaction();
+
+
         transaction.begin();
 
-        //несмотря на то, что все изменения сливаются в бд при коммите транзакции, id для энтитей генерируются и инкрементятся тут.
-        entityManager.persist( two );
         entityManager.persist( one );
-
-        //Мэнеджер не будет дожидаться окончания транзакции и зальёт все изменнения которые висят в контексте.
         entityManager.flush();
 
-        //todo тут дедлок будет.....
         if( entityManager != null )
         {
+           // transaction.rollback();
             throw new RuntimeException( "some exception" );
         }
         transaction.commit();
 
-        transactionTemplate.execute( status -> {
-            assertNull( em.find( OrphanTwo.class, two.getId() ) );
-            assertNull( em.find( OrphanOne.class, one.getId() ) );
-            return null;
-        } );
+        entityManagerFactory.createEntityManager();
     }
-
 }
