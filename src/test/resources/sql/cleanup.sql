@@ -36,4 +36,7 @@ DElETE FROM oto_ud_two;
 DElETE FROM oto_ud_one;
 DElETE FROM room_with_order_column;
 DElETE FROM table_with_order_column;
+DElETE FROM cached;
+DElETE FROM callback_entity;
+DElETE FROM optimistic_lock_e;
 SET FOREIGN_KEY_CHECKS = 1;
