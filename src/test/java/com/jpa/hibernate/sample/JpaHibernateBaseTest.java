@@ -24,8 +24,9 @@ public class JpaHibernateBaseTest
         .withUsername( "root" )
         .withPassword( "" )
         .withDatabaseName("jpa_hibernate")
-   // .withInitScript( "sql/init.sql" )  //TODO  раскоментировать это, чтобы использовать рукописную схему в тестах, затем 1.2
-        .withLogConsumer(new Slf4jLogConsumer(logger));
+        // .withInitScript( "sql/init.sql" )  //TODO  раскоментировать это, чтобы использовать рукописную схему в тестах, затем 1.2
+        .withLogConsumer( new Slf4jLogConsumer( logger ) )
+        .withReuse( true );
 
     static class Initializer
         implements ApplicationContextInitializer<ConfigurableApplicationContext>
