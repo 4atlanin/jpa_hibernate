@@ -31,6 +31,7 @@ public class DefaultInheritanceTest extends JpaHibernateBaseTest
         List<BaseClass> entities = entityManager.createQuery( "SElECT ec FROM BaseClass ec" ).getResultList();
         assertNotNull( entities );
         entityManager.getTransaction().commit();
+        entityManager.close();
     }
 
     public static BaseClass getBaseClass()
