@@ -3,20 +3,18 @@ package com.jpa.hibernate.sample.dirty_checking;
 import com.jpa.hibernate.sample.relationship.unidirectional.one_to_many.OTMUDManySide;
 
 import javax.persistence.*;
+import java.util.Collections;
 import java.util.List;
 
 @Entity( name = "dirty_checking" )
-@Access( AccessType.PROPERTY )
+//@Access( AccessType.PROPERTY )
 public class DirtyChecking
 {
-    @Id
-    @GeneratedValue
-    @Column( name = "dc_id" )
     private int id;
 
     // Пример 1
     // по умолчанию Создаст таблицу связи
-    @OneToMany
+  //  @OneToMany
     private List<OTMUDManySide> many;
 
     public DirtyChecking()
@@ -65,7 +63,7 @@ public class DirtyChecking
         return "OTMUDOneSide(id=" + this.getId() + ", many=" + this.getMany() + ", manyCustom=" + ")";
     }
 
-    @Id
+    @Id                         // т.к. @Id над геттером, то и Hibernate будет обращаться к полям через методы.
     @GeneratedValue
     @Column( name = "otmudo_id" )
     public int getId()
@@ -76,7 +74,7 @@ public class DirtyChecking
     @OneToMany
     public List<OTMUDManySide> getMany()
     {
-        return this.many.subList( 0, 1 );
+        return Collections.unmodifiableList( this.many );
     }
 
     public void setMany( List<OTMUDManySide> many )

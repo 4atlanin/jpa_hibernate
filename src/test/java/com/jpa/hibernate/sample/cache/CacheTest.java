@@ -1,6 +1,7 @@
 package com.jpa.hibernate.sample.cache;
 
 import com.jpa.hibernate.sample.JpaHibernateBaseTest;
+import org.hibernate.type.AbstractSingleColumnStandardBasicType;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
@@ -16,10 +17,6 @@ public class CacheTest extends JpaHibernateBaseTest
 {
     @PersistenceUnit
     private EntityManagerFactory entityManagerFactory;
-
-    //Из этого энтити мэнеджера нельзя создавать ручные транзакции, т.к. для этого мэнеджера все транзакции управляются спрингом
-    @PersistenceContext
-    private EntityManager em;
 
     @Autowired
     private TransactionTemplate transactionTemplate;
@@ -44,7 +41,7 @@ public class CacheTest extends JpaHibernateBaseTest
 
         cache.evict( Cached.class, two.getId() );   //убираем из кэша по id
         assertFalse( cache.contains( Cached.class, two.getId() ) );
-
+        entityManager.close();
     }
 
 }

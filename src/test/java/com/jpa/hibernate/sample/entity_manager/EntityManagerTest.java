@@ -46,6 +46,7 @@ public class EntityManagerTest extends JpaHibernateBaseTest
         entityManager.persist( one );
 
         transaction.commit();
+        entityManager.close();
     }
 
     //Смысл такой же как и в предыдущем, но тут сделано по другому
@@ -120,6 +121,7 @@ public class EntityManagerTest extends JpaHibernateBaseTest
 
         transaction.commit();
         assertNotNull( one );
+        entityManager.close();
     }
 
     @Test
@@ -157,6 +159,7 @@ public class EntityManagerTest extends JpaHibernateBaseTest
         assertTrue( entityManager.contains( one ) );
         assertNotNull( one );
         assertNotNull( two );
+        entityManager.close();
     }
 
     @Test
@@ -185,6 +188,8 @@ public class EntityManagerTest extends JpaHibernateBaseTest
             assertNotNull( em.find( OrphanOne.class, one.getId() ) );
             return null;
         } );
+
+        entityManager.close();
     }
 
     @Test
@@ -211,6 +216,8 @@ public class EntityManagerTest extends JpaHibernateBaseTest
 
         assertNotNull( one.getTwo() );
         assertEquals( "payload", two.getPayload() );
+
+        entityManager.close();
     }
 
     @Test
@@ -247,6 +254,8 @@ public class EntityManagerTest extends JpaHibernateBaseTest
 
         assertNotNull( one.getTwo() );
         assertEquals( "payload", two.getPayload() );
+
+        entityManager.close();
     }
 
     @Test
@@ -328,6 +337,5 @@ public class EntityManagerTest extends JpaHibernateBaseTest
         }
         transaction.commit();
 
-        entityManagerFactory.createEntityManager();
     }
 }

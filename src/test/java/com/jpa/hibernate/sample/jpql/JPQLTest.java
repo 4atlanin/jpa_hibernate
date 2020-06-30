@@ -26,10 +26,6 @@ public class JPQLTest extends JpaHibernateBaseTest
     @PersistenceUnit
     private EntityManagerFactory entityManagerFactory;
 
-    //Из этого энтити мэнеджера нельзя создавать ркчные транзакции, т.к. для этого мэнеджера все транзакции управляются спрингом
-    @PersistenceContext
-    private EntityManager em;
-
     @Autowired
     private TransactionTemplate transactionTemplate;
 
@@ -61,6 +57,7 @@ public class JPQLTest extends JpaHibernateBaseTest
         transaction.commit();
 
         assertEquals( 2, stringLists.size() - stringLists.stream().filter( it -> it.equals( "payload" ) ).collect( Collectors.toList() ).size() );
+        manager.close();
     }
 
     private EntityOTOUDTwo getEntity()
@@ -94,6 +91,8 @@ public class JPQLTest extends JpaHibernateBaseTest
         List<DTOFromJPQL> stringLists = manager.createQuery( "SELECT NEW com.jpa.hibernate.sample.attributes.DTOFromJPQL(e.payload, e.anotherString) FROM EntityOTOUDTwo e" )
                                                .getResultList();
         transaction.commit();
+        manager.close();
+
     }
 
     @Test
@@ -119,6 +118,8 @@ public class JPQLTest extends JpaHibernateBaseTest
         List<EntityOTOUDTwo> stringLists = manager.createQuery( "SELECT e FROM EntityOTOUDTwo e", EntityOTOUDTwo.class )
                                                   .getResultList();
         transaction.commit();
+        manager.close();
+
     }
 
     @Test
@@ -146,6 +147,8 @@ public class JPQLTest extends JpaHibernateBaseTest
                                                   .getResultList();
         transaction.commit();
         assertFalse( stringLists.isEmpty() );
+        manager.close();
+
     }
 
     @Test
@@ -175,6 +178,8 @@ public class JPQLTest extends JpaHibernateBaseTest
                                                   .getResultList();
         transaction.commit();
         assertFalse( stringLists.isEmpty() );
+        manager.close();
+
     }
 
     @Test
@@ -205,6 +210,7 @@ public class JPQLTest extends JpaHibernateBaseTest
         assertEquals( "abra cadabra", payload );
 
         transaction.commit();
+        entityManager.close();
     }
 
     @Test
@@ -230,6 +236,8 @@ public class JPQLTest extends JpaHibernateBaseTest
         EntityOTOUDTwo entity = entityManager.createQuery( query ).getSingleResult();
         assertEquals( "payload", entity.getPayload() );
         transaction.commit();
+        entityManager.close();
+
     }
 
     @Test
@@ -248,6 +256,7 @@ public class JPQLTest extends JpaHibernateBaseTest
         transaction.begin();
         assertEquals( 1, entityManager.createNativeQuery( "SELECT * FROM oto_ud_two", EntityOTOUDTwo.class ).getResultList().size() );
         transaction.commit();
+        entityManager.close();
     }
 
     @Test
@@ -286,6 +295,7 @@ public class JPQLTest extends JpaHibernateBaseTest
         transaction.commit();
 
         assertEquals( "Hello world5", string );
+        entityManager.close();
 
     }
 

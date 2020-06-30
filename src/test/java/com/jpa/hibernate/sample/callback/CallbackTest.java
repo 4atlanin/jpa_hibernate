@@ -13,11 +13,7 @@ public class CallbackTest extends JpaHibernateBaseTest
 {
     @PersistenceUnit
     private EntityManagerFactory entityManagerFactory;
-
-    //Из этого энтити мэнеджера нельзя создавать ручные транзакции, т.к. для этого мэнеджера все транзакции управляются спрингом
-    @PersistenceContext
-    private EntityManager em;
-
+    
     @Autowired
     private TransactionTemplate transactionTemplate;
 
@@ -55,5 +51,7 @@ public class CallbackTest extends JpaHibernateBaseTest
         entityManager.remove( two );
         System.out.println( "  " );
         transaction.commit();
+
+        entityManager.close();
     }
 }

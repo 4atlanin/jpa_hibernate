@@ -5,7 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Data
-@Embeddable
+
 public class EmbeddedEntity
 {
     @Column( name = "field_from_embedded_entity" )

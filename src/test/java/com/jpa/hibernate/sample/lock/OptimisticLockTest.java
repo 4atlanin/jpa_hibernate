@@ -48,6 +48,7 @@ public class OptimisticLockTest extends JpaHibernateBaseTest
         two.setVersion( 0 );  //несмотря на декремент версси, всё будет ок. Эта версия будет проигнорированна, возьмётся нужная
         transaction.commit();
         assertEquals( two.getVersion(), 1 );
+        entityManager.close();
     }
 
     @Test
@@ -72,6 +73,7 @@ public class OptimisticLockTest extends JpaHibernateBaseTest
         two.setValue( "qwe" );
         transaction.commit();
         assertEquals( two.getVersion(), 2 );
+        entityManager.close();
     }
 
     @Test
@@ -103,5 +105,6 @@ public class OptimisticLockTest extends JpaHibernateBaseTest
         assertThrows(
             RollbackException.class,  // за RollbackException скрыто OptimisticLockException
             transaction::commit );
+        entityManager.close();
     }
 }
