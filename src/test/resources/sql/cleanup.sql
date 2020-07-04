@@ -46,4 +46,5 @@ DELETE FROM billing_detail;
 DELETE FROM credit_card_;
 DELETE FROM bank_account_;
 DELETE FROM billing_detail_;
+DELETE FROM item_orded;
 SET FOREIGN_KEY_CHECKS = 1;

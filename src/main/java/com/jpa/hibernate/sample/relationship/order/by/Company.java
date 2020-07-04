@@ -22,6 +22,7 @@ public class Company
 
     @OneToMany( cascade = CascadeType.PERSIST, fetch = FetchType.EAGER )
     @OrderBy( "name ASC" )   //можно включать несколько полей: OrderBy("name DESC, id ASC");  Можно указывать как поля энтити так и колонки в БД
+    // для @ElementCollection простых типов работает, только нужно имя колонки указывать, или по жефолту будет ASC
     @JoinColumn( name = "cob_id", nullable = false )
     private List<Location> locations;
 

@@ -10,8 +10,6 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceUnit;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-
 @Sql( executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:sql/cleanup.sql" )
 public class PolymorfCollectionTest extends JpaHibernateBaseTest
 {
