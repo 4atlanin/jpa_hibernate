@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Entity
 @RequiredArgsConstructor
 @NoArgsConstructor
-@Table( name = "address_pk_join_column" )
+@Table( name = "address_pk_join" )
 public class AddressPkJoinColumnMaster
 {
     @Id
@@ -17,6 +17,6 @@ public class AddressPkJoinColumnMaster
     private int id;
 
     @NonNull
-    @Column( name = "apjc_street" )
+    @Column( name = "apj_street" )
     private String street;
 }
