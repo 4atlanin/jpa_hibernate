@@ -44,6 +44,7 @@ public class OneToOneTest extends JpaHibernateBaseTest
         EntityOTOUDOne one = new EntityOTOUDOne();
         one.setTwo( two );
 
+        two = otoudtwoRepository.save( two );
         one = otoudOneRepository.save( one );
 
         assertNotNull( otoudOneRepository.findById( one.getId() ).get().getTwo().getId() );

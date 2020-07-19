@@ -131,6 +131,7 @@ PPS. Проверил в  `testOrderWithElementCollection` и `testWithEmbeddabl
 - `@ManyToOne(optional = false)` тоже что и `@JoinColumn`  
 - cascade в тут выглядит ненужным, т.к. _Many_ сторона не должна влиять на _One_ сторону.
 ##### OneToOne
+- `@PrimaryJoinColumn` при использовании такой стратегии, владеющему объекту придётся вручную установить id(тотже что и у зависимого);
 ##### OneToMany
  - по умолчанию, @OneToMany создаёт таблицу связи, как в ManyToMany.
 #### Двунаправленные

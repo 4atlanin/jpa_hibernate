@@ -8,6 +8,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.PersistenceUnit;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @Sql( executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:sql/cleanup.sql" )
@@ -18,6 +24,9 @@ public class OneToOneTest extends JpaHibernateBaseTest
 
     @Autowired
     private EntityOTOUDTwoRepository otoudtwoRepository;
+
+    @PersistenceUnit
+    private EntityManagerFactory entityManagerFactory;
 
     @Test
     public void unidirectionalSimple()
@@ -35,11 +44,34 @@ public class OneToOneTest extends JpaHibernateBaseTest
 
         assertThrows( LazyInitializationException.class, otoudOneRepository.findById( one.getId() ).get().getTwo()::getPayload );
 
-
         // Если брать просто ID, то LazyInitializationException не кидается. Т.к id уже есть в энтити.
         //assertThrows( LazyInitializationException.class, otoudOneRepository.findById( one.getId() ).get().getTwo()::getId );
+    }
 
+    @Test
+    public void unidirectionalPrimaryJoinColumnTest()
+    {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
 
+        AddressPkJoinColumnMaster address = new AddressPkJoinColumnMaster( "Street" );
+        final EntityTransaction transaction = entityManager.getTransaction();
+
+        transaction.begin();
+        entityManager.persist( address );
+        UserPkJoinColumnSlave user = new UserPkJoinColumnSlave( address.getId(), "name" );
+        entityManager.persist( user );
+        //     user.setAddress( address );
+
+        transaction.commit();
+
+        entityManager.clear();
+
+        transaction.begin();
+        final List<UserPkJoinColumnSlave> list =
+            entityManager.createQuery( "SELECT u FROM UserPkJoinColumnSlave u", UserPkJoinColumnSlave.class ).getResultList();
+        transaction.commit();
+
+        entityManager.close();
 
     }
 }
