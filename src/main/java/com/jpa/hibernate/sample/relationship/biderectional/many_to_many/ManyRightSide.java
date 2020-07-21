@@ -18,7 +18,7 @@ public class ManyRightSide
     @Column( name = "rightField" )
     private String rightString;
 
-    @ManyToMany( mappedBy = "rightSide" )
-    private List<ManyLeftSide> leftSide;
+    @ManyToMany( mappedBy = "rightSide" )   // эта часть по факту доступна только для чтения,
+    private List<ManyLeftSide> leftSide;    // т.к. при сохранении Хибер будет анализировать содержимое ManyLeftSide#rightSide
 
 }
