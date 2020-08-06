@@ -1,6 +1,7 @@
 package com.jpa.hibernate.sample.relationship.biderectional.many_to_many;
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
@@ -20,6 +21,7 @@ public class ManyLeftSide
 
 
     // эта сторона будет владельцем связи
+    @ToString.Exclude
     @ManyToMany
     @JoinTable( name = "mtm_join_table",
                 joinColumns = @JoinColumn( name = "mtm_bd_left_id" ),

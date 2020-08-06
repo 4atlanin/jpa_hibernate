@@ -1,9 +1,6 @@
 package com.jpa.hibernate.sample.relationship.biderectional.one_to_many;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -16,13 +13,17 @@ public class ManyToOneBag
     @Id
     @GeneratedValue
     @Column( name = "mtob_id" )
+    @ToString.Exclude
     private int id;
 
+    @ToString.Exclude
     @NonNull
     @Column( name = "mtob_payload" )
     private String payload;
 
+    @ToString.Exclude
     @ManyToOne                      // всегда находится на владеющей стороне
+    //  @LazyToOne( LazyToOneOption.NO_PROXY )
     @JoinColumn( name = "otmb_join_column", nullable = false )
     private OneToManyBag oneToManyBag;
 }

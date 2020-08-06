@@ -4,6 +4,7 @@ import com.jpa.hibernate.sample.JpaHibernateBaseTest;
 import com.jpa.hibernate.sample.repository.relationship.unidirectional.one_to_many.OTMUDManySideRepository;
 import com.jpa.hibernate.sample.repository.relationship.unidirectional.one_to_many.OTMUDOneSideRepository;
 import org.assertj.core.internal.bytebuddy.utility.RandomString;
+import org.hibernate.annotations.LazyCollection;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
