@@ -26,7 +26,6 @@ public class JpaHibernateBaseTest
         .withDatabaseName("jpa_hibernate")
         // .withInitScript( "sql/init.sql" )  //TODO  раскоментировать это, чтобы использовать рукописную схему в тестах, затем 1.2
         .withLogConsumer( new Slf4jLogConsumer( logger ) )
-        .withCommand( "mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --sql-mode=ALLOW_INVALID_DATES --default_time_zone=+00:00 --max_connections=1000" )
         .withReuse( true );
 
     static class Initializer
